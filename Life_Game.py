@@ -7,6 +7,7 @@ parser = argparse.ArgumentParser(description='Game of Life Parameter')
 
 parser.add_argument('--game-size',
                     default=100,
+                    type=int,
                     help='the size of working field of game of life')
 parser.add_argument('--initize-method',
                     default=1,
@@ -39,6 +40,7 @@ def life_judge(data, row, col):
             # print(r, c)
             if data[r, c] == on:
                 life_sum += 1
+    # print(life_sum)
     if life_sum > 3 or life_sum < 2:
         return off
     if life_sum == 3:
@@ -80,7 +82,10 @@ def random_method(size=args.game_size, seed=args.seed):
 
 
 def main():
-    game_update(random_method())
+    start = random_method()
+    # start = np.random.choice([on], size=(args.game_size, args.game_size))
+
+    game_update(start)
 
 
 if __name__ == '__main__':
